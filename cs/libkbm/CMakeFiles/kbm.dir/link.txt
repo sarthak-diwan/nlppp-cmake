@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libkbm.a  CMakeFiles/kbm.dir/Akbm.cpp.o CMakeFiles/kbm.dir/attr.cpp.o CMakeFiles/kbm.dir/con_.cpp.o CMakeFiles/kbm.dir/dict.cpp.o CMakeFiles/kbm.dir/find.cpp.o CMakeFiles/kbm.dir/kbm.cpp.o CMakeFiles/kbm.dir/kbm_alloc.cpp.o CMakeFiles/kbm.dir/kbm_kb.cpp.o CMakeFiles/kbm.dir/libkbm.cpp.o CMakeFiles/kbm.dir/pret.cpp.o CMakeFiles/kbm.dir/ptr.cpp.o CMakeFiles/kbm.dir/st.cpp.o CMakeFiles/kbm.dir/sym.cpp.o
+/usr/bin/ranlib ../../lib/libkbm.a

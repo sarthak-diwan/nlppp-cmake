@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -g  -shared  -o ../lib/libnlp_engine.so CMakeFiles/nlp_engine.dir/main.cpp.o  ../lib/libprim.a ../lib/libkbm.a ../lib/libconsh.a ../lib/libwords.a ../lib/liblite.a -lpybind11::module ../lib/libconsh.a ../lib/libprim.a ../lib/libkbm.a ../lib/libwords.a -licui18n -licuuc -licudata -licuio 

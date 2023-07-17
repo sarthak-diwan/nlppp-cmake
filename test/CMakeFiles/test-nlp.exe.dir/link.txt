@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/test-nlp.exe.dir/main.cpp.o  -o ../bin/test-nlp.exe  ../lib/libprim.a ../lib/libkbm.a ../lib/libconsh.a ../lib/libwords.a ../lib/liblite.a ../lib/libconsh.a ../lib/libprim.a ../lib/libkbm.a ../lib/libwords.a -licui18n -licuuc -licudata -licuio 

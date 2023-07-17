@@ -1,92 +1,161 @@
-# cmake_example for pybind11
+# NLP Engine
 
-[![Gitter][gitter-badge]][gitter-link]
+## Tutorial Videos
 
-|      CI              | status |
-|----------------------|--------|
-| MSVC 2019            | [![AppVeyor][appveyor-badge]][appveyor-link] |
-| conda.recipe         | [![Conda Actions Status][actions-conda-badge]][actions-conda-link] |
-| pip builds           | [![Pip Actions Status][actions-pip-badge]][actions-pip-link] |
-| [`cibuildwheel`][]   | [![Wheels Actions Status][actions-wheels-badge]][actions-wheels-link] |
+Many of you have been asking for tutorial videos on NLP++ and here is the first set. More coming soon...
+1. NLP++ tutorial videos: http://tutorials.visualtext.org
+1. Analyzers used in the videos: https://github.com/VisualText/nlp-tutorials
+1. VisualText tutorial videos: http://vttutorials.visualtext.org
 
-[gitter-badge]:            https://badges.gitter.im/pybind/Lobby.svg
-[gitter-link]:             https://gitter.im/pybind/Lobby
-[actions-badge]:           https://github.com/pybind/cmake_example/workflows/Tests/badge.svg
-[actions-conda-link]:      https://github.com/pybind/cmake_example/actions?query=workflow%3A%22Conda
-[actions-conda-badge]:     https://github.com/pybind/cmake_example/workflows/Conda/badge.svg
-[actions-pip-link]:        https://github.com/pybind/cmake_example/actions?query=workflow%3A%22Pip
-[actions-pip-badge]:       https://github.com/pybind/cmake_example/workflows/Pip/badge.svg
-[actions-wheels-link]:     https://github.com/pybind/cmake_example/actions?query=workflow%3AWheels
-[actions-wheels-badge]:    https://github.com/pybind/cmake_example/workflows/Wheels/badge.svg
-[appveyor-link]:           https://ci.appveyor.com/project/dean0x7d/cmake-example/branch/master
-[appveyor-badge]:          https://ci.appveyor.com/api/projects/status/57nnxfm4subeug43/branch/master?svg=true
+## Glitter Chat
 
-An example [pybind11](https://github.com/pybind/pybind11) module built with a
-CMake-based build system. This is useful for C++ codebases that have an
-existing CMake project structure. This is being replaced by
-[`scikit_build_example`](https://github.com/pybind/scikit_build_example), which uses
-[scikit-build-core][], which is designed to allow Python
-packages to be driven from CMake without depending on setuptools. The approach here has
-some trade-offs not present in a pure setuptools build (see
-[`python_example`](https://github.com/pybind/python_example)) or scikit-build-core. Python 3.7+ required;
-see the commit history for older versions of Python.
+[![Join the chat at https://gitter.im/NLPplusplus/NLP-Engine](https://badges.gitter.im/NLPplusplus/NLP-Engine.svg)](https://gitter.im/NLPplusplus/NLP-Engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) Join us on Glitter chat!
 
-Problems vs. scikit-build-core based example:
+## About
 
-- You have to manually copy fixes/additions when they get added to this example (like when Apple Silicon support was added)
-- Modern editable installs are not supported (scikit-build-core doesn't support them either yet, but probably will soon)
-- You are depending on setuptools, which can and will change
-- You are stuck with an all-or-nothing approach to adding cmake/ninja via wheels (scikit-build-core adds these only as needed, so it can be used on BSD, Cygwin, Pyodide, Android, etc)
-- You are stuck with whatever CMake ships with (scikit-build-core backports FindPython for you)
+The NLP engine is the engine that runs text analyzers writtein in [NLP++](http://visualtext.org). The nlp-engine runs on Linux, Windows, and MacOS. It can be called in two different ways:
 
+1. Calling the nlp.exe command line executable (this is what the VSCode NLP++ Language Extension does)
+1. Calling from within C++ or another language that can call c++ functions
 
-## Prerequisites
+# Command Line
 
-* A compiler with C++11 support
-* Pip 10+ or CMake >= 3.4 (or 3.14+ on Windows, which was the first version to support VS 2019)
-* Ninja or Pip 10+
+You can get help on nlp.exe:
 
+      [command arg: --help]
 
-## Installation
+      usage: nlp [--version] [--help]
+                 [-INTERP][-COMPILED] INTERP is the default
+                 [-ANA analyzer] name or path to NLP++ analyzer folder
+                 [-IN infile] input text file path
+                 [-OUT outdir] output directory
+                 [-WORK workdir] working directory
+                 [-DEV][-SILENT] -DEV generates logs, -SILENT (default) does not
+                 [infile [outfile]] when no /IN or -OUT specified
 
-Just clone this repository and pip install. Note the `--recursive` option which is
-needed for the pybind11 submodule:
+      Directories in the nlp.exe files:
+         data        nlp engine bootstrap grammar
+         analyzers   default location for nlp++ analyzer folders
+         visualtext  common files for the VisualText IDE
 
-```bash
-git clone --recursive https://github.com/pybind/cmake_example.git
-pip install ./cmake_example
+## Switches
+
+Switch | Function
+------------ | -------------
+-INTERP / -COMPILED | Runs NLP++ code interpreted or compiled
+-ANA | name of the analyzer or path to the analyzer folder
+-IN | Input file
+-OUT | Output directory
+-WORK | Working director where the library and executable files are
+-DEV / -SILENT | -DEV generates logs, -SILENT (default) does not
+[infile [outfile]] | when no -IN or -OUT specified
+
+# Calling NLP++ Analyzers from C++
+
+There is a test directory in the repository that builds a test.exe that calls analyzers using c++ code.
+
+## Test directory
+The test directory contains a call to the nlp engine using buffers.
+
+# Compiling the NLP-ENGINE
+
+The nlp engine compiles and runs on Linus, Windows, and MacOS. The easist way to compile them is using VSCode using the [C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools), [CMake](https://marketplace.visualstudio.com/items?itemName=twxs.cmake), and [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extensions.
+
+## Linux
+
+To compile the nlp-engine for Linux:
+
+* git clone https://github.com/VisualText/nlp-engine.git
+* Install [VSCode](https://code.visualstudio.com/download)
+* Open the nlp-engine folder in VSCode
+* Install the [C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools), [CMake](https://marketplace.visualstudio.com/items?itemName=twxs.cmake), and [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extensions into VSCode
+* Install the gcc compiler
+* Select a "GCC kit" using the bottom status bar
+* Click on "Build" in the status bar
+
+## Windows 10
+
+To compile the nlp-engine for Windows 10:
+
+* git clone https://github.com/VisualText/nlp-engine.git
+* Install [VSCode](https://code.visualstudio.com/download)
+* Open the nlp-engine folder in VSCode
+* Install the [C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools), [CMake](https://marketplace.visualstudio.com/items?itemName=twxs.cmake), and [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extensions into VSCode
+* Install the community version of [VisualStudio 2019](https://visualstudio.microsoft.com/downloads/)
+* Select a "Visual Studio Community 2019 Release - x86" kit using the bottom status bar
+* Click on "Build" in the status bar
+
+## MacOS
+
+To compile the nlp-engine for the Mac:
+
+* git clone https://github.com/VisualText/nlp-engine.git
+* Install [VSCode](https://code.visualstudio.com/download)
+* Open the nlp-engine folder in VSCode
+* Install the [C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools), [CMake](https://marketplace.visualstudio.com/items?itemName=twxs.cmake), and [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extensions into VSCode
+* Install [brew](http://brew.sh) to download mac-specific packages like clang
+* Install the [clang c++ compiler](https://clang.llvm.org/get_started.html)
+* Select the "Clang kit" using the bottom status bar
+* Click on "Build" in the status bar
+
+# NLP-ENGINE Development
+
+All the dependencies for building nlp engine from source are included in this repository. We use VCPkg to checkout and build ICU from source. We use CMake to build the nlp engine making sure the ICU library is "found" through VCPkg.
+
+## Linux / MacOS
+```
+git clone --recurse-submodules https://github.com/visualtext/nlp-engine
+cd nlp-engine
 ```
 
-With the `setup.py` file included in this example, the `pip install` command will
-invoke CMake and build the pybind11 module as specified in `CMakeLists.txt`.
-
-
-
-## Building the documentation
-
-Documentation for the example project is generated using Sphinx. Sphinx has the
-ability to automatically inspect the signatures and documentation strings in
-the extension module to generate beautiful documentation in a variety formats.
-The following command generates HTML-based reference documentation; for other
-formats please refer to the Sphinx manual:
-
- - `cd cmake_example/docs`
- - `make html`
-
-
-## License
-
-Pybind11 is provided under a BSD-style license that can be found in the LICENSE
-file. By using, distributing, or contributing to this project, you agree to the
-terms and conditions of this license.
-
-
-## Test call
-
-```python
-import cmake_example
-cmake_example.add(1, 2)
+### Fetch the third-party libraries (via vcpkg)
+```
+cd vcpkg
+./bootstrap-vcpkg.sh
+./vcpkg install
 ```
 
-[`cibuildwheel`]:    https://cibuildwheel.readthedocs.io
-[scikit-build-core]: https://github.com/scikit-build/scikit-build-core
+### Configure Cmake for out of source build
+```
+cd ..
+cmake -DCMAKE_BUILD_TYPE=Debug -B build -S . -DCMAKE_TOOLCHAIN_FILE='./vcpkg/scripts/buildsystems/vcpkg.cmake'
+```
+
+### Build
+```
+cmake --build build/ --target all
+```
+
+Once the build succeedes, the nlp executable should be in the bin folder along with test-nlp.exe.
+
+## Windows
+
+### Clone the repository
+```
+git clone --recurse-submodules https://github.com/visualtext/nlp-engine
+cd nlp-engine
+```
+
+### Make sure VCPkg builds 64 bit binaries (Note: VCPkg is expected to make this the default by Sept 2023 after which this step won't be necessary)
+```
+set VCPKG_DEFAULT_TRIPLET=x64-windows
+```
+
+### Fetch the third-party libraries (via vcpkg)
+```
+cd vcpkg
+bootstrap-vcpkg.bat
+vcpkg install
+```
+
+### Configure Cmake for out of source build
+```
+cd ..
+cmake -G "Visual Studio 16 2019" -A x64 -B build -S . -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake
+```
+
+### Build
+```
+cmake --build build --config Release
+```
+
