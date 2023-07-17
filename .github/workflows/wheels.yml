@@ -43,6 +43,10 @@ jobs:
       with:
         submodules: true
 
+    - name: Verify clean directory
+      run: sudo apt update && sudo apt-get install autoconf-archive
+      shell: bash
+
     - name: Setup vcpkg
       uses: lukka/run-vcpkg@main
       id: runvcpkg
