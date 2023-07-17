@@ -43,9 +43,11 @@ jobs:
       with:
         submodules: true
 
-    - name: Install dependency
-      run: pushd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg install && popd
-      shell: bash
+    - name: Setup vcpkg
+      uses: lukka/run-vcpkg@main
+      id: runvcpkg
+      with:
+        runVcpkgInstall: true
 
     - uses: pypa/cibuildwheel@v2.13.0
       env:
