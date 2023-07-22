@@ -39,7 +39,7 @@ include_directories(include/Api)
 include_directories(include/Api/lite)
 include_directories(${ICU_INCLUDE_DIR})
 
-add_subdirectory(extern/pybind11)
+add_subdirectory(pybind11)
 add_subdirectory(cs)
 add_subdirectory(src)
 add_subdirectory(lite)
