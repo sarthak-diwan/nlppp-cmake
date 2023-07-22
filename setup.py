@@ -110,21 +110,21 @@ class CMakeBuild(build_ext):
         if not build_temp.exists():
             build_temp.mkdir(parents=True)
 
-        subprocess.run(
-            ["./bootstrap-vcpkg.sh"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
-        )
+        # subprocess.run(
+        #     ["./bootstrap-vcpkg.sh"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
+        # )
 
-        subprocess.run(
-            ["./vcpkg", "install"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
-        )
+        # subprocess.run(
+        #     ["./vcpkg", "install"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
+        # )
 
-        subprocess.run(
-            ["cat", "/project/vcpkg/buildtrees/icu/config-x64-linux-dbg-out.log"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
-        )
+        # subprocess.run(
+        #     ["cat", "/project/vcpkg/buildtrees/icu/config-x64-linux-dbg-out.log"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
+        # )
 
-        subprocess.run(
-            ["cat", "/project/vcpkg/buildtrees/icu/config-x64-linux-dbg-err.log"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
-        )
+        # subprocess.run(
+        #     ["cat", "/project/vcpkg/buildtrees/icu/config-x64-linux-dbg-err.log"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
+        # )
 
 
         subprocess.run(
