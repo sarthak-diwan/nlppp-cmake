@@ -45,10 +45,10 @@ select = "*-musllinux*"
 before-build = "apk add icu-dev"
 
 [tool.cibuildwheel.windows]
-before-build = "cd vcpkg && .\bootstrap-vcpkg.bat && .\vcpkg install && cd .."
+before-build = "cd vcpkg && .\\bootstrap-vcpkg.bat && .\\vcpkg install && cd .."
 
 [tool.cibuildwheel.macos]
-before-build = "cd vcpkg && .\bootstrap-vcpkg.sh && .\vcpkg install && cd .."
+before-build = "cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg install && cd .."
 
 [tool.ruff]
 extend-select = [
