@@ -38,11 +38,11 @@ test-skip = ["*universal2:arm64"]
 before-build = "rm -rf {project}/build"
 
 [tool.cibuildwheel.linux]
-before-build = "yum -y install libicu libicu-devel curl zip unzip tar && if [ ! -f /usr/bin/c++ ]; then ln -s /opt/rh/devtoolset-10/root/bin/c++ /usr/bin/c++; fi"
+before-all = "yum -y install libicu libicu-devel curl zip unzip tar && if [ ! -f /usr/bin/c++ ]; then ln -s /opt/rh/devtoolset-10/root/bin/c++ /usr/bin/c++; fi"
 
 [[tool.cibuildwheel.overrides]]
 select = "*-musllinux*"
-before-build = "apk add icu-dev"
+before-all = "apk add icu-dev"
 
 [tool.cibuildwheel.windows]
 before-build = "cd vcpkg && .\\bootstrap-vcpkg.bat && .\\vcpkg install && cd .."
