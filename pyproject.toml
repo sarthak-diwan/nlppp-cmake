@@ -45,10 +45,13 @@ select = "*-musllinux*"
 before-all = "apk add icu-dev"
 
 [tool.cibuildwheel.windows]
-before-build = "cd vcpkg && .\\bootstrap-vcpkg.bat && .\\vcpkg install && cd .."
+before-all = "cd vcpkg && .\\bootstrap-vcpkg.bat && .\\vcpkg install && cd .."
+environment = {
+  ICU_INCLUDE_DIR = "$PWD\\vcpkg\\packages\\icu_x64-windows\\lib:$PWD\\vcpkg\\packages\\icu_x64-windows\\bin:$PWD\\vcpkg\\packages\\icu_x86-windows\\lib:$PWD\\vcpkg\\packages\\icu_x86-windows\\bin"
+}
 
 [tool.cibuildwheel.macos]
-before-build = "cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg install && cd .."
+before-all = "brew install icu4c && brew link icu4c --force"
 
 [tool.ruff]
 extend-select = [
