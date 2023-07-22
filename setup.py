@@ -119,6 +119,15 @@ class CMakeBuild(build_ext):
         )
 
         subprocess.run(
+            ["cat", "/project/vcpkg/buildtrees/icu/config-x64-linux-dbg-out.log"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
+        )
+
+        subprocess.run(
+            ["cat", "/project/vcpkg/buildtrees/icu/config-x64-linux-dbg-err.log"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
+        )
+
+
+        subprocess.run(
             ["cmake", ext.sourcedir, *cmake_args], cwd=build_temp, check=True
         )
         subprocess.run(
