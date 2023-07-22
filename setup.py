@@ -111,6 +111,14 @@ class CMakeBuild(build_ext):
             build_temp.mkdir(parents=True)
 
         subprocess.run(
+            ["./bootstrap-vcpkg.sh"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
+        )
+
+        subprocess.run(
+            ["./vcpkg", "install"], cwd=os.path.join(ext.sourcedir,"vcpkg"), check=True
+        )
+
+        subprocess.run(
             ["cmake", ext.sourcedir, *cmake_args], cwd=build_temp, check=True
         )
         subprocess.run(
