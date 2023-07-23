@@ -92,7 +92,9 @@ class CMakeBuild(build_ext):
                 build_args += ["--config", cfg]
             
             cmake_args += [
-                f"-DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake"
+                f"-DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake",
+                "-A",
+                "x64"
             ]
 
         if sys.platform.startswith("darwin"):
@@ -105,7 +107,7 @@ class CMakeBuild(build_ext):
             cmake_args += [
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DVCPKG_BUILD_TYPE=release",
-                "-DCMAKE_CXX_FLAGS=-std=c++11"
+                "-DCMAKE_CXX_FLAGS=-std=c++17"
             ]
 
         # Set CMAKE_BUILD_PARALLEL_LEVEL to control the parallel build level
