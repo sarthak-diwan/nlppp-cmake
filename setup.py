@@ -90,6 +90,10 @@ class CMakeBuild(build_ext):
                     f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{cfg.upper()}={extdir}"
                 ]
                 build_args += ["--config", cfg]
+            
+            cmake_args += [
+                f"-DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake"
+            ]
 
         if sys.platform.startswith("darwin"):
             # Cross-compile support for macOS - respect ARCHFLAGS if set
