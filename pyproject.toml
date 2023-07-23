@@ -45,8 +45,7 @@ select = "*-musllinux*"
 before-all = "apk add icu-dev"
 
 [tool.cibuildwheel.windows]
-before-all = "cd vcpkg && .\\bootstrap-vcpkg.bat && .\\vcpkg install && cd .."
-environment = {CMAKE_PREFIX_PATH = "$PWD\\vcpkg\\packages\\icu_x64-windows"}
+before-all = "pip install cmake && cd vcpkg && .\\bootstrap-vcpkg.bat && .\\vcpkg install && cd .."
 
 [tool.cibuildwheel.macos]
 before-all = "brew install icu4c && brew link icu4c --force"
